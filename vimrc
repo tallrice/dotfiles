@@ -1,20 +1,24 @@
 " GENERAL SETTINGS"{{{
 
-" Pathogen"{{{
+" "Pathogen""{{{
 call pathogen#infect()
 "}}}
 
-" Leader"{{{
-let mapleader = ','
-map j ,
+" "On Windows, also use '.vim' instead of 'vimfiles'; """{{{
+" this makes synchronization
+" across (heterogeneous) systems easier.
+" http://vim.wikia.com/wiki/Synchronize_configuration_to_many_computers
+if has('win32') || has('win64')
+  set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
+endif
 "}}}
 
-" Persistent Undo "{{{
+" "Persistent Undo ""{{{
 set undofile
-set undodir=~/vimfiles/vimundo/
+set undodir=~/.vim/vimundo/
 "}}}
 
-" Keyword Program For K"{{{
+" " Keyword Program For K""{{{
 set keywordprg=":help"
 "}}}
 
@@ -144,10 +148,10 @@ set ts=4 sw=4     sts=4 expandtab
 " "HIGHLIGHTS""{{{
 " cursorcolumn: highlight the screen column of the cursor
 " (local to window)
-set cuc "nocuc
+set nocuc "cuc
 map <silent> <f8> :echo "cursorcolumn toggled" \| set cuc! <CR>
 " cursorline: highlight the screen line of the cursor
-set cul "nocul
+set nocul "cul
 " colorcolumn: columns to highlight
 " (local to window)
 " set cc=8,16,24,32,40,48,56,64,72
@@ -197,16 +201,8 @@ map <F10> :let &scrolloff=999-&scrolloff<CR>
 
 " "MAPPINGS""{{{
 
-" Abbreviations"{{{
-" :h usr_24.txt "24.7 Abbreviations"
-" :h iabbrev
-iabbrev #d "-------------------------------------------------------------------"
-" iabbrev #cd " "-------------------------------------------------------------------"
-iabbrev #s "*******************************************************************"
-" iabbrev #cs " "*******************************************************************"
-"}}}
-
-" "mappings help""{{{
+" "Help""{{{
+nmap <leader>m :h map-overview<CR>
 " :h usr_05.txt "settings"
 " :h usr_40.txt "commands"
 " :h netrw-bookmarks
@@ -223,63 +219,71 @@ iabbrev #s "*******************************************************************"
 " :nmap  :nnoremap  :nunmap  :nmapclear    yes         -              -
 " :vmap  :vnoremap  :vunmap  :vmapclear     -         yes             -
 " :omap  :onoremap  :ounmap  :omapclear     -          -             yes
+"                                           Visual    Select ~
+" :vmap  :vnoremap  :vunmap  :vmapclear       yes      yes
+" :xmap  :xnoremap  :xunmap  :xmapclear       yes       -
+" :smap  :snoremap  :sunmap  :smapclear       -        yes
+"                                           Insert  Command-line  Lang-Arg ~
+" :map!  :noremap!  :unmap!  :mapclear!       yes        yes         -
+" :imap  :inoremap  :iunmap  :imapclear       yes         -          -
+" :cmap  :cnoremap  :cunmap  :cmapclear        -         yes         -
+" :lmap  :lnoremap  :lunmap  :lmapclear       yes*       yes*       yes*
 "
 " :h map-listing for key to :map command "1.4 LISTING MAPPINGS"
 " :h map-which-keys (,m) "1.7 WHAT KEYS TO MAP"
 "}}}
 
+" "Leader""{{{
+let mapleader = ','
+"}}}
+
 " "Command-Line""{{{
-noremap <leader>j :
+map j :
 noremap qj q:
+"}}}
+
+" "Abbreviations""{{{
+" :h usr_24.txt "24.7 Abbreviations"
+" :h iabbrev
+iabbrev #d "-------------------------------------------------------------------"
+" iabbrev #cd " "-------------------------------------------------------------------"
+iabbrev #s "*******************************************************************"
+" iabbrev #cs " "*******************************************************************"
 "}}}
 
 " "Background""{{{
 noremap <leader>t :set bg=light<cr>
 noremap <leader>k :set bg=dark<cr>
-nmap <leader>m :h map-overview<CR>
-nmap <leader>d :.! date /T<cr>
+nmap <leader>d :.! date<cr>
 "}}}
 
-" "Up/Down""{{{
+" "Movement""{{{
 noremap <CR> j
-"}}}
-
-" "Backspace to Visual-Select""{{{
 vnoremap <bs> <left>
 "}}}
 
-" "yo, yO (Unimpaired)""{{{
-" See :h yo for Unimpaired plugin help, unmapped here for movement
-autocmd VimEnter * nunmap yo
-autocmd VimEnter * nunmap yO
+" "Yank"""{{{
+nnoremap Y y$
 "}}}
 
-" "Find Nex[T]""{{{
-nnoremap t f|nnoremap T F
-" "[S]Next Again
-nnoremap s ;|nnoremap S ,
+" "[S]earch""{{{
+nnoremap s f|nnoremap S F
+nnoremap t ;|nnoremap T ,
+nnoremap ; s
 "}}}
 
-" "[F]ind Word""{{{
-noremap f /
-noremap F ?
-noremap qf q/
-noremap qF q?
+" "[F]ind""{{{
+nnoremap f /
+nnoremap F ?
+nnoremap qf q/
+nnoremap qF q?
 "}}}
 
 " "QUIT / SAVE""{{{
-" Quit current window without saving with <leader>dd
-nmap <silent> <leader>dd :q!<CR>
 " Quit all windows without saving with <leader>qq
 nmap <silent> <leader>qq :qa!<CR>
 " Quit all windows and save <leader>ww
 nmap <silent> <leader>ww :wqa<CR>
-"}}}
-
-" "MS - WINDOWS""{{{
-"noremap <C-K> <C-Y>
-"noremap <C-J> <C-E>
-" source $VIMRUNTIME/mswin.vim
 "}}}
 
 " "Tab/Window Navigation""{{{
@@ -300,21 +304,14 @@ noremap _ z1<cr>
 noremap / <c-w><
 noremap \ <c-w>>
 noremap ? :vertical resize 1<cr>
-noremap \| <c-w>|
-"}}}
-
-" Resize All Equal"{{{
-noremap <c-\> <c-w>=
+noremap \| :vertical resize 999<cr>
+" noremap \| <c-w>|
 "}}}
 
 " "CTAGS NAVIGATION""{{{
 noremap <C-[> <C-t>
 " See Also: commentary.vim plugin, g[, g], etc.
 " https://github.com/tpope/vim-commentary
-"}}}
-
-" Keyword Search"{{{
-noremap ; K
 "}}}
 
 "}}}
@@ -446,37 +443,20 @@ map <leader>et :tabe %%
 
 " Automatically source the .vimrc upon write command"{{{
 if has("autocmd")
-    " autocmd! BufWritePost	" Remove ALL autocommands for the current group.
-    " autocmd BufWritePost .vimrc source $MYVIMRC
-    autocmd BufWritePost _vimrc source $MYVIMRC
-endif
-if has("autocmd")
-    " autocmd BufWritePost .gvimrc source $MYGVIMRC
-    autocmd BufWritePost _gvimrc source $MYGVIMRC
-endif
-
-" type ',v' to edit the .vimrc
-nmap <leader>v :tabedit $MYVIMRC<CR>
-" type ',gv' to edit the .gvimrc
-nmap <leader>gv :tabedit $MYGVIMRC<CR>
-" type ',so to edit the solarized colorscheme
-nmap <leader>so :tabedit ~/.vim/bundle/vim-colors-solarized-master/colors/solarized.vim<CR>
-" type ',i' to edit the .index
-if has("gui_running")
-  if has("gui_gtk2")
-  elseif has("gui_macvim")
-nmap <leader>i :vsp /Applications/MacVim.app/Contents/Resources/vim/runtime/doc/index.txt<CR>
+  autocmd! BufWritePost     " Remove ALL autocommands for the current group.
+  if has("gui_macvim")
+    autocmd BufWritePost .vimrc source $MYVIMRC
   elseif has("gui_win32")
-nmap <leader>i :vsp C:\Program\ Files\ (x86)\Vim\vim73\doc\index.txt<CR>
+    autocmd BufWritePost _vimrc source $MYVIMRC
   endif
 endif
-" nmap <leader>i :vsp /Applications/MacVim.app/Contents/Resources/vim/runtime/doc/index.txt<CR>
-" type ',y' to edit the newpy.py
+
+nmap <leader>v :tabedit $MYVIMRC<CR>
+nmap <leader>gv :tabedit $MYGVIMRC<CR>
+nmap <leader>i :vert h index<CR>
 nmap <leader>y :tabedit /Users/tallrice/Public/site-packages/newpy.py<CR>
-" type ',pv to edit Practical Vim Notes
-nmap <leader>pv :tabedit ~/vimfiles/practicalvim.vim<CR>
-nmap <leader>km :tabedit /Users/tallrice/tmk_keyboard/keyboard/ergodox/mac-optimized/keymap_tallrice.h<CR>
-nmap <leader>kw :tabedit /Users/tallrice/tmk_keyboard/keyboard/ergodox/windows-optimized/keymap_tallrice.h<CR>
+nmap <leader>pv :tabedit ~/.vim/practicalvim.vim<CR>
+nmap <leader>so :tabedit ~/.vim/bundle/vim-colors-solarized-master/colors/solarized.vim<CR>
 "}}}
 
 " V25: Creating colorschemes for Vim"{{{

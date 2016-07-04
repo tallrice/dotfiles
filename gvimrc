@@ -21,3 +21,12 @@ set guioptions+=rc
 " Do not use Aqua scrollbars
 "set guioptions-=rL
 set guioptions-=L
+
+if has("autocmd")
+  autocmd! BufWritePost     " Remove ALL autocommands for the current group.
+  if has("gui_macvim")
+    autocmd BufWritePost .gvimrc source $MYGVIMRC
+  elseif has("gui_win32")
+    autocmd BufWritePost _gvimrc source $MYGVIMRC
+  endif
+endif
