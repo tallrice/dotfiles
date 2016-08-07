@@ -1,0 +1,34 @@
+<!-- This file is a custom keyboard layout used with the Karabiner app: -->
+<!-- This file should be copied here: -->
+<!-- /Users/userid/Library/Application Support/Karabiner -->
+<!-- https://pqrs.org/osx/karabiner/ -->
+
+<?xml version="1.0"?>
+<root>
+  <item>
+    <name>tallrice layout</name>
+    <identifier>private.tallrice_layout</identifier>
+    <autogen>__KeyToKey__ KeyCode::E, KeyCode::D</autogen>
+    <autogen>__KeyToKey__ KeyCode::R, KeyCode::F</autogen>
+    <autogen>__KeyToKey__ KeyCode::T, KeyCode::J</autogen>
+    <autogen>__KeyToKey__ KeyCode::Y, KeyCode::K</autogen>
+    <autogen>__KeyToKey__ KeyCode::I, KeyCode::H</autogen>
+    <autogen>__KeyToKey__ KeyCode::O, KeyCode::L</autogen>
+    <autogen>__KeyToKey__ KeyCode::P, KeyCode::SEMICOLON</autogen>
+    <autogen>__KeyToKey__ KeyCode::D, KeyCode::E</autogen>
+    <autogen>__KeyToKey__ KeyCode::F, KeyCode::T</autogen>
+    <autogen>__KeyToKey__ KeyCode::H, KeyCode::Y</autogen>
+    <autogen>__KeyToKey__ KeyCode::J, KeyCode::N</autogen>
+    <autogen>__KeyToKey__ KeyCode::K, KeyCode::I</autogen>
+    <autogen>__KeyToKey__ KeyCode::L, KeyCode::O</autogen>
+    <autogen>__KeyToKey__ KeyCode::SEMICOLON, KeyCode::R</autogen>
+    <autogen>__KeyToKey__ KeyCode::N, KeyCode::P</autogen>
+  </item>
+  <item>
+    <name>commandR to controlR layout</name>
+    <identifier>private.commandR_to_controlR</identifier>
+    <!-- <autogen>__KeyToKey__ KeyCode::SHIFT_L, KeyCode::MINUS</autogen> -->
+    <autogen>__KeyToKey__ KeyCode::COMMAND_R, KeyCode::CONTROL_R</autogen>
+  </item>
+  <!-- ============================================================ -->
+</root>
