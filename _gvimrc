@@ -3,7 +3,7 @@ set bg=dark
 
 "set guifont=LetterGothicMono:h18
 "set guifont=Fixedsys:h11:cANSI
-set guifont=Lucida_Console:h11:cANSI
+set guifont=LucidaConsole:h18
 " set guifont=Source\ Code\ Pro:h14
 silent! colorscheme solarized
 
