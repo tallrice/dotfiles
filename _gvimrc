@@ -3,8 +3,8 @@ set bg=dark
 
 "set guifont=LetterGothicMono:h18
 "set guifont=Fixedsys:h11:cANSI
-set guifont=LucidaConsole:h18
-" set guifont=Source\ Code\ Pro:h14
+" set guifont=LucidaConsole:h18
+set guifont=Source\ Code\ Pro:h18
 silent! colorscheme solarized
 
 if exists('*HexHighlight()')
