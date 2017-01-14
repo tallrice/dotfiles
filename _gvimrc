@@ -1,11 +1,23 @@
+autocmd! BufWritePost
+autocmd BufWritePost .gvimrc source $MYGVIMRC
+autocmd BufWritePost _gvimrc source $MYGVIMRC
 set go-=T
-set bg=dark
-
+set background=dark
+silent! colorscheme solarized
+call togglebg#map("<F2>")
+if has("gui_macvim")
+    set undodir=~/.vim/vimundo/
+elseif has("gui_win32")
+    set undodir=~/vimfiles/vimundo/
+    " Maximize screen size at startup
+    " sim[alt] {key}: simulate pressing {key} while holding Alt pressed.
+    " ~ is used by simalt to represent the <Space> character. >
+    au GUIEnter * simalt ~x
+endif
 "set guifont=LetterGothicMono:h18
 "set guifont=Fixedsys:h11:cANSI
 " set guifont=LucidaConsole:h18
 set guifont=Source\ Code\ Pro:h18
-silent! colorscheme solarized
 
 if exists('*HexHighlight()')
   " http://www.vim.org/scripts/script.php?script_id=2937
@@ -18,8 +30,3 @@ set guioptions+=rc
 " Do not use Aqua scrollbars
 "set guioptions-=rL
 set guioptions-=L
-
-if has("autocmd")
-  autocmd BufWritePost .gvimrc source $MYGVIMRC
-  autocmd BufWritePost _gvimrc source $MYGVIMRC
-endif
