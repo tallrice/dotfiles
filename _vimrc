@@ -50,6 +50,7 @@ set ve=block
 set statusline=
 set statusline+=[%n]                            " buffer number
 set statusline+=%F                              "full-path filename
+set statusline+=%{fugitive#statusline()}        " git current branch
 set statusline+=%h                              "help file flag
 set statusline+=%m                              "modified flag
 set statusline+=%r                              "read only flag
